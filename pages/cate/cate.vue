@@ -6,7 +6,8 @@
       <scroll-view class="left-scroll-view" scroll-y :style="{height: wh + 'px'}">
         <block v-for="(item,index) in cateList" :key="index">
           <view :class="['left-scroll-view-item',index === active ? 'active' : '']" @click="activeChange(index)">
-            {{item.cat_name}}</view>
+            {{item.cat_name}}
+          </view>
         </block>
       </scroll-view>
       <!-- 右侧的滚动视图区域 -->
@@ -14,7 +15,7 @@
         <view class="cate-lv2" v-for="(item, index) in cateLevel2" :key="index">
           <view class="cate-lv2-title">{{item.cat_name}}</view>
           <view class="cate-lv3-list">
-            <view class="cate-lv3-item" v-for="(item2, index2) in item.children" :key="index" @click="gotoGoodsList(item)">
+            <view class="cate-lv3-item" v-for="(item2, index2) in item.children" :key="index2" @click="gotoGoodsList(item2.cat_id)">
               <image :src="item2.cat_icon"></image>
               <text>{{item2.cat_name}}</text>
             </view>
@@ -31,7 +32,7 @@
       return {
         wh: 0,
         active: 0,
-        scrollTop:0,
+        scrollTop: 0,
         cateList: [],
         cateLevel2: []
       };
@@ -55,14 +56,15 @@
         this.cateLevel2 = this.cateList[index].children
         this.scrollTop = this.scrollTop ? 1 : 0
       },
-      gotoGoodsList(item){
+      gotoGoodsList(cat_id) {
+        // console.log(cat_id)
         uni.navigateTo({
-          url:'/subpkg/goods_list/goods_list?cid='+item.cat_id
+          url: '/subpkg/goods_list/goods_list?cid=' + cat_id
         })
       },
-      gotoSearch(){
+      gotoSearch() {
         uni.navigateTo({
-          url:'/subpkg/search/search'
+          url: '/subpkg/search/search'
         })
       },
     }
@@ -103,35 +105,37 @@
       }
     }
   }
-  .cate-lv2-title{
+
+  .cate-lv2-title {
     font-size: 12px;
     font-weight: bold;
     text-align: center;
     padding: 15px 0;
   }
+
   .cate-lv3-list {
     display: flex;
     flex-wrap: wrap;
-  
+
     .cate-lv3-item {
       width: 33.33%;
       margin-bottom: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
-  
+
       image {
         width: 60px;
         height: 60px;
       }
-  
+
       text {
         font-size: 12px;
       }
     }
   }
-  .right-scroll-view{
+
+  .right-scroll-view {
     background-color: #ffffff
   }
-
 </style>
