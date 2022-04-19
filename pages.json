@@ -59,21 +59,20 @@
   "subPackages": [{
     "root": "subpkg",
     "pages": [{
-      "path": "goods_details/goods_details",
-      "style": {
-      }
-
-    }, {
       "path": "goods_list/goods_list",
       "style": {
         "onReachBottomDistance": 150,
         "enablePullDownRefresh": true,
-        "backgroundColor":"#F8F8F8"
+        "backgroundColor": "#F8F8F8"
       }
 
     }, {
       "path": "search/search",
       "style": {}
+    }, {
+      "path": "goods_detail/goods_detail",
+      "style": {}
+
     }]
   }],
   "globalStyle": {
