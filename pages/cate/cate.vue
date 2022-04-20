@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="cart-container">
     <my-search @click="gotoSearch"></my-search>
     <view class="scroll-view-container">
       <!-- 左侧的滚动视图区域 -->
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+  import badgeMix from '@/mixins/tabbar-badge.js'
   export default {
     data() {
       return {
@@ -37,6 +38,7 @@
         cateLevel2: []
       };
     },
+    mixins:[badgeMix],
     onLoad() {
       const sysInfo = uni.getSystemInfoSync()
       this.wh = sysInfo.windowHeight - 50
@@ -137,5 +139,8 @@
 
   .right-scroll-view {
     background-color: #ffffff
+  }
+  .cart-container{
+    padding-bottom: 50px;
   }
 </style>
